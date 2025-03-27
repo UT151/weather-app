@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Weather.css"
 
 
@@ -16,12 +16,14 @@ function Weather() {
     //so that after hitting enter the data is fetched
     const search = (evt) => {
         if (evt.key === "Enter") {
-            fetch(`${api.base}weather?q=${city}&units=metric&appid=${api.key}`).then(res => res.json()).then(result => {
-                setWeather(result)
-                console.log(result)
-                // the search bar gets clear after hitting enter
-                setCity("");
-            })
+            fetch(`${api.base}weather?q=${city}&units=metric&appid=${api.key}`)
+                .then(res => res.json())
+                .then(result => {
+                    setWeather(result)
+                    console.log(result)
+                    // the search bar gets clear after hitting enter
+                    setCity("");
+                })
         }
     };
 
@@ -65,6 +67,12 @@ function Weather() {
                 break;
             case "Thunderstorm":
                 className = "thunderstorm";
+                break;
+            case "Drizzle":
+                className = "drizzle";
+                break;
+            case "Dust":
+                className = "dust";
                 break;
             default:
                 break;
@@ -110,7 +118,7 @@ function Weather() {
                     </div>
                 ) : (" ")}
             </main>
-    // </div >
+        </div >
     );
 }
 
